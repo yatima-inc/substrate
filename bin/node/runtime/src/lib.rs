@@ -113,7 +113,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	// and set impl_version to 0. If only runtime
 	// implementation changes and behavior does not, then leave spec_version as
 	// is and increment impl_version.
-	spec_version: 265,
+	spec_version: 266,
 	impl_version: 1,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 2,
@@ -1094,6 +1094,7 @@ impl pallet_transaction_storage::Config for Runtime {
 	type Event = Event;
 	type Currency = Balances;
 	type Call = Call;
+	type WeightInfo = pallet_transaction_storage::weights::SubstrateWeight<Runtime>;
 }
 
 construct_runtime!(
@@ -1517,6 +1518,7 @@ impl_runtime_apis! {
 			add_benchmark!(params, batches, frame_system, SystemBench::<Runtime>);
 			add_benchmark!(params, batches, pallet_timestamp, Timestamp);
 			add_benchmark!(params, batches, pallet_tips, Tips);
+			add_benchmark!(params, batches, pallet_transaction_storage, TransactionStorage);
 			add_benchmark!(params, batches, pallet_treasury, Treasury);
 			add_benchmark!(params, batches, pallet_utility, Utility);
 			add_benchmark!(params, batches, pallet_vesting, Vesting);
